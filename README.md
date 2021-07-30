@@ -121,6 +121,12 @@ export PATH_TO_ETH2_GENESIS=$(pwd)/data/genesis.ssz
 export PATH_TO_ETH2_KEYSTORES=$(pwd)/keystores/prysm
 ```
 
+Change directory into Prysm 
+
+```
+cd prysm
+```
+
 Run the Prysm beacon
 
 ```

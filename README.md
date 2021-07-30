@@ -90,7 +90,7 @@ You will need Bazel version 3.7.0 to build Prysm from source. You can find full 
 bazel version
 ```
 
-THen, clone and build from source
+Then, clone and build from source
 
 ```
 git clone -b merge https://github.com/prysmaticlabs/prysm.git && cd prysm

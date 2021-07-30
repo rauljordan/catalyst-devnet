@@ -14,7 +14,14 @@ go install github.com/protolambda/eth2-testnet-genesis@v0.0.1
 go install github.com/protolambda/eth2-val-tools@latest
 ```
 
-Run the genesis state generator
+Set the genesis time of eth1 by copying the result of the following command to your clipboard:
+```
+date +%s
+```
+
+Then, update the `"timestamp"` value at the end of `eth1_config.json`. Finally, update the `MIN_GENESIS_TIME` in `eth2_config.yaml` to the eth1 value + some delay, perhaps 10 minutes, which would be +600.
+
+Next, run the genesis state generator
 
 ```
 eth2-testnet-genesis merge \
@@ -25,7 +32,7 @@ eth2-testnet-genesis merge \
   --tranches-dir "./data/tranches"
 ```
 
-Run the keystores generator from a pre-determined mnemonic
+OPTIONAL (already checked into the repository) Run the keystores generator from a pre-determined mnemonic
 
 ```
 eth2-val-tools keystores \
@@ -35,6 +42,24 @@ eth2-val-tools keystores \
   --source-max=64 \
   --source-mnemonic="lumber kind orange gold firm achieve tree robust peasant april very word ordinary before treat way ivory jazz cereal debate juice evil flame sadness"
 ```
+
+NOTE: If you have to run the command above, you will need to edit `keystores/prysm` from:
+
+```
+all-accounts.keystore.json
+keymanageropts.json
+```
+
+to
+
+```
+direct/
+  accounts/
+    all-accounts.keystore.json
+keymanageropts.json
+```
+
+for Prysm to accept the format
 
 ## Build and Configure Catalyst
 
@@ -55,13 +80,14 @@ mkdir -p data/catalyst
 
 ## Build Prysm
 
-Install dependencies for build
+You will need Bazel version 3.7.0 to build Prysm from source. You can find full information on how to build Prysm from source [here](https://docs.prylabs.network/docs/install/install-with-bazel). Once you have Bazel 3.7.0 installed, you can check with:
 
 ```
-bazel
+bazel version
 ```
 
-Clone and build from source
+THen, clone and build from source
+
 ```
 git clone -b merge https://github.com/prysmaticlabs/prysm.git && cd prysm
 bazel build //beacon-chain:beacon-chain

@@ -1,5 +1,9 @@
 # Catalyst Devnet Prysm Setup
 
+Expected result:
+
+<img width="1792" alt="Screen Shot 2021-07-30 at 1 38 21 PM" src="https://user-images.githubusercontent.com/5572669/127697645-3bf9a84b-820b-44a0-8636-51d9b44bae2a.png">
+
 ```
 git clone https://github.com/rauljordan/catalyst-devnet && cd catalyst-devnet
 ```
